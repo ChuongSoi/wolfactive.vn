@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 90" width="320" height="90">
+  <g fill="#0F172A">
+    <!-- Left Eye Mark -->
+    <path d="M 20 12 L 120 28 L 72 82 L 72 52 L 52 38 L 96 32 Z" />
+    <!-- Right Eye Mark -->
+    <path d="M 240 12 L 140 28 L 188 82 L 188 52 L 208 38 L 164 32 Z" />
+  </g>
+</svg>

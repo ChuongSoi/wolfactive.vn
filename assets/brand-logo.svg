@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 54" width="220" height="54">
+  <!-- WOLFACTIVE Official Logo Mark (Dark Vector for Light Header) -->
+  <g fill="#0F172A">
+    <!-- Left Eye Symbol -->
+    <path d="M 10 8 L 52 14 L 32 40 L 26 40 L 20 24 L 14 26 L 22 16 Z" />
+    <polygon points="10,8 52,14 36,44 28,44 24,24 16,26" />
+    
+    <!-- Left Wing/Eye Geometric Path -->
+    <path d="M 8 6 L 50 14 L 35 44 L 28 44 L 22 24 L 16 26 Z" />
+  </g>
+</svg>
