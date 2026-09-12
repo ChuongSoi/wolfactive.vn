@@ -102,8 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // GOOGLE FORM CONFIGURATION (Form Đăng Ký Đặt Áo Wolf Active)
     window.GOOGLE_FORM_CONFIG = {
-        formUrl: "https://docs.google.com/forms/d/e/1FAIpQLScX_user_form/formResponse",
-        formResponseUrl: "https://docs.google.com/forms/d/1odhEUevxe6l1IRCVjtstJBn7bXE8bhDL_moHWsrbYJc/formResponse",
+        formUrl: "https://docs.google.com/forms/d/e/1FAIpQLScTO4PmahqC-KOEXvQBuxSX-5Mku0THVj5Y8AditkgoEQi_dQ/formResponse",
+        formResponseUrl: "https://docs.google.com/forms/d/e/1FAIpQLScTO4PmahqC-KOEXvQBuxSX-5Mku0THVj5Y8AditkgoEQi_dQ/formResponse",
         entries: {
             fullname: "entry.101657411",      // Họ tên
             phone: "entry.1644733492",        // Số Điện Thoại
