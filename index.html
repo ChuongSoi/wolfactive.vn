@@ -520,39 +520,63 @@
                 </div>
 
                 <form id="leadForm" class="cta-form">
-                    <h3>Gửi Yêu Cầu Báo Giá WXP (0đ)</h3>
+                    <h3>FORM ĐĂNG KÍ ĐẶT ÁO WOLF ACTIVE</h3>
                     
-                    <div class="form-group">
-                        <label for="fullname">Họ và tên của bạn *</label>
-                        <input type="text" id="fullname" placeholder="Ví dụ: Nguyễn Văn A" required class="form-control">
-                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullname">Họ và tên của bạn *</label>
+                            <input type="text" id="fullname" placeholder="Ví dụ: Nguyễn Văn A" required class="form-control">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="phone">Số điện thoại / Zalo *</label>
-                        <input type="tel" id="phone" placeholder="Ví dụ: 0938 173 383" required class="form-control">
+                        <div class="form-group">
+                            <label for="phone">Số điện thoại / Zalo *</label>
+                            <input type="tel" id="phone" placeholder="Ví dụ: 0938 173 383" required class="form-control">
+                        </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="organization">Tên CLB / Doanh Nghiệp</label>
-                            <input type="text" id="organization" placeholder="Ví dụ: Techcombank Running Club" class="form-control">
+                            <label for="email">Địa chỉ Email (nếu có)</label>
+                            <input type="email" id="email" placeholder="Ví dụ: email@example.com" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <label for="quantity">Số lượng dự kiến</label>
-                            <input type="number" id="quantity" placeholder="Ví dụ: 20" min="5" value="20" class="form-control">
+                            <label for="product_type">Loại áo mong muốn</label>
+                            <select id="product_type" class="form-control">
+                                <option value="áo thun">Áo thun (Running Tee)</option>
+                                <option value="áo ba lỗ">Áo ba lỗ (Singlet W05)</option>
+                                <option value="quần short">Quần short chạy bộ</option>
+                                <option value="bộ quà tặng">Khác / Phụ kiện & Giftset</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="notes">Ghi chú yêu cầu bộ môn / thiết kế (không bắt buộc)</label>
-                        <textarea id="notes" rows="2" placeholder="Ví dụ: Cần may áo Singlet chạy bộ W05 Thermal màu cam cho 30 thành viên..." class="form-control"></textarea>
+                        <label for="organization">Tên CLB / Doanh nghiệp / Giải chạy của bạn</label>
+                        <input type="text" id="organization" placeholder="Ví dụ: Techcombank Running Club / Giải chạy..." class="form-control">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="quantity">Số lượng áo dự kiến</label>
+                            <input type="text" id="quantity" placeholder="Ví dụ: Từ 50 áo..." class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="budget">Ngân sách dự kiến (nếu có)</label>
+                            <input type="text" id="budget" placeholder="Ví dụ: 150.000đ - 200.000đ/áo..." class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="delivery_time">Thời gian mong muốn nhận hàng</label>
+                        <input type="text" id="delivery_time" placeholder="Ví dụ: Cần gấp trước ngày 25 tháng này..." class="form-control">
                     </div>
 
                     <button type="submit" class="btn btn-orange btn-block btn-lg">
                         🚀 GỬI YÊU CẦU - NHẬN MẪU 3D MIỄN PHÍ
                     </button>
-                    <p class="privacy-note">🔒 Thông tin của bạn được bảo mật tuyệt đối theo chính sách WXP by Wolf Active.</p>
+                    <p class="privacy-note">🔒 Thông tin của bạn được bảo mật và tự động lưu về Google Form của Wolf Active.</p>
                 </form>
             </div>
         </div>

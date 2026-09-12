@@ -100,16 +100,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModal = document.getElementById('closeModal');
     const calcApplyBtn = document.getElementById('calc-apply-btn');
 
-    // GOOGLE FORM CONFIGURATION:
-    // Bạn chỉ cần thay GOOGLE_FORM_URL và các mã entry.XXXXXX bên dưới để kết nối dữ liệu về Google Form & Google Sheet của bạn!
+    // GOOGLE FORM CONFIGURATION (Form Đăng Ký Đặt Áo Wolf Active)
     window.GOOGLE_FORM_CONFIG = {
-        formUrl: "YOUR_GOOGLE_FORM_URL", // Ví dụ: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSc.../formResponse"
+        formUrl: "https://docs.google.com/forms/d/e/1FAIpQLScX_user_form/formResponse",
+        formResponseUrl: "https://docs.google.com/forms/d/1odhEUevxe6l1IRCVjtstJBn7bXE8bhDL_moHWsrbYJc/formResponse",
         entries: {
-            fullname: "entry.1000001",     // Mã entry cho Họ tên
-            phone: "entry.1000002",        // Mã entry cho Số điện thoại / Zalo
-            organization: "entry.1000003", // Mã entry cho Tên CLB / Doanh nghiệp
-            quantity: "entry.1000004",     // Mã entry cho Số lượng dự kiến
-            notes: "entry.1000005"         // Mã entry cho Ghi chú
+            fullname: "entry.101657411",      // Họ tên
+            phone: "entry.1644733492",        // Số Điện Thoại
+            email: "entry.1981056247",        // Email
+            organization: "entry.785617082",  // Tên câu lạc bộ / doanh nghiệp / giải chạy
+            product_type: "entry.1322256504", // Loại áo mong muốn
+            quantity: "entry.778891136",      // Số lượng áo dự kiến
+            budget: "entry.1591560592",       // Ngân sách dự kiến
+            delivery_time: "entry.1274761955" // Thời gian mong muốn nhận hàng
         }
     };
 
@@ -118,11 +121,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const contactSec = document.getElementById('contact-form');
             if (contactSec) {
                 contactSec.scrollIntoView({ behavior: 'smooth' });
-                const notesElem = document.getElementById('notes');
-                if (notesElem) {
+                const deliveryElem = document.getElementById('delivery_time');
+                if (deliveryElem) {
                     const sportName = sportSelect.options[sportSelect.selectedIndex].text;
                     const qty = qtyRange.value;
-                    notesElem.value = `[Tự động từ dự toán] Đơn hàng dự kiến: ${qty} sản phẩm môn ${sportName}`;
+                    deliveryElem.value = `[Tự động từ dự toán] Đơn hàng dự kiến: ${qty} sản phẩm môn ${sportName}`;
                 }
             }
         });
@@ -134,22 +137,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const fullname = document.getElementById('fullname')?.value.trim() || '';
             const phone = document.getElementById('phone')?.value.trim() || '';
+            const email = document.getElementById('email')?.value.trim() || '';
             const organization = document.getElementById('organization')?.value.trim() || '';
+            const product_type = document.getElementById('product_type')?.value.trim() || '';
             const quantity = document.getElementById('quantity')?.value.trim() || '';
-            const notes = document.getElementById('notes')?.value.trim() || '';
+            const budget = document.getElementById('budget')?.value.trim() || '';
+            const delivery_time = document.getElementById('delivery_time')?.value.trim() || '';
 
             const config = window.GOOGLE_FORM_CONFIG;
 
-            // Gửi dữ liệu về Google Form tự động nếu đã cài đặt URL
-            if (config && config.formUrl && !config.formUrl.includes('YOUR_GOOGLE_FORM_URL')) {
+            // Gửi dữ liệu về Google Form tự động
+            const targetUrl = config.formResponseUrl || config.formUrl;
+            if (targetUrl) {
                 const formData = new FormData();
                 if (config.entries.fullname) formData.append(config.entries.fullname, fullname);
                 if (config.entries.phone) formData.append(config.entries.phone, phone);
+                if (config.entries.email) formData.append(config.entries.email, email);
                 if (config.entries.organization) formData.append(config.entries.organization, organization);
+                if (config.entries.product_type) formData.append(config.entries.product_type, product_type);
                 if (config.entries.quantity) formData.append(config.entries.quantity, quantity);
-                if (config.entries.notes) formData.append(config.entries.notes, notes);
+                if (config.entries.budget) formData.append(config.entries.budget, budget);
+                if (config.entries.delivery_time) formData.append(config.entries.delivery_time, delivery_time);
 
-                fetch(config.formUrl, {
+                fetch(targetUrl, {
                     method: 'POST',
                     mode: 'no-cors',
                     body: formData
