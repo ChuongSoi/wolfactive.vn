@@ -1362,3 +1362,291 @@ a {
         padding: 6px 12px;
     }
 }
+
+/* ==========================================================================
+   FLOATING CONTACT WIDGET & POPOVER (COOLMATE CXP STYLE)
+   ========================================================================== */
+.floating-contact-widget {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1200;
+}
+
+.floating-contact-btn {
+    background: linear-gradient(135deg, #FF5A00 0%, #E64A00 100%);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 9999px;
+    padding: 14px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 6px 24px rgba(255, 90, 0, 0.45);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.floating-contact-btn:hover {
+    background: linear-gradient(135deg, #FF6B1A 0%, #F05000 100%);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(255, 90, 0, 0.6);
+}
+
+.floating-contact-btn .btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.25);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+/* Contact Popover Card Box */
+.contact-popover {
+    position: absolute;
+    bottom: 64px;
+    right: 0;
+    width: 350px;
+    background: #FFFFFF;
+    border-radius: 20px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+    border: 1px solid #E2E8F0;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1210;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.contact-popover.active {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.popover-header {
+    background: #0F172A;
+    color: #FFFFFF;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #FF5A00;
+}
+
+.popover-brand-title .brand-tag {
+    font-size: 10px;
+    font-weight: 800;
+    color: #FF5A00;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.popover-brand-title h4 {
+    font-size: 15px;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.popover-close-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #FFFFFF;
+    font-size: 20px;
+    line-height: 1;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.popover-close-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: #FF5A00;
+}
+
+.popover-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: #F8FAFC;
+    max-height: 480px;
+    overflow-y: auto;
+}
+
+.contact-channel-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 14px;
+    padding: 14px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.contact-channel-card.fb-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.contact-channel-card.fb-card:hover {
+    border-color: #1877F2;
+    box-shadow: 0 4px 14px rgba(24, 119, 242, 0.15);
+    transform: translateY(-1px);
+}
+
+.channel-icon-wrapper {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.fb-icon {
+    background: #1877F2;
+    color: #FFFFFF;
+}
+
+.zalo-icon {
+    background: #0068FF;
+    color: #FFFFFF;
+}
+
+.zalo-text-badge {
+    font-weight: 900;
+    font-size: 13px;
+    letter-spacing: -0.5px;
+}
+
+.channel-info {
+    flex-grow: 1;
+}
+
+.channel-name {
+    font-size: 14px;
+    font-weight: 800;
+    color: #0F172A;
+}
+
+.channel-desc {
+    font-size: 12px;
+    color: #64748B;
+}
+
+.channel-phone {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0068FF;
+}
+
+.channel-action-btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.fb-btn {
+    background: #1877F2;
+    color: #FFFFFF;
+}
+
+.fb-btn:hover {
+    background: #1464C9;
+}
+
+.zalo-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.zalo-header-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.zalo-qr-box {
+    width: 100%;
+    background: #0068FF;
+    border-radius: 12px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 104, 255, 0.2);
+}
+
+.zalo-qr-img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    object-fit: contain;
+}
+
+.zalo-btn {
+    background: #0068FF;
+    color: #FFFFFF;
+    padding: 10px 16px;
+    font-size: 13.5px;
+    font-weight: 800;
+    border-radius: 10px;
+    transition: background 0.2s ease;
+}
+
+.zalo-btn:hover {
+    background: #0052CC;
+    color: #FFFFFF;
+}
+
+/* Mobile Responsive Floating Contact */
+@media (max-width: 768px) {
+    .floating-contact-widget {
+        bottom: 74px; /* Float above mobile fixed bottom bar */
+        right: 12px;
+    }
+
+    .floating-contact-btn {
+        padding: 10px 16px;
+        font-size: 12px;
+        box-shadow: 0 4px 16px rgba(255, 90, 0, 0.4);
+    }
+
+    .contact-popover {
+        width: calc(100vw - 24px);
+        max-width: 340px;
+        right: 0;
+        bottom: 56px;
+    }
+}
+

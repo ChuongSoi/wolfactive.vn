@@ -301,4 +301,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, { passive: true });
     }
+
+    // 8. Floating Contact Button Popover Toggle
+    const floatingContactBtn = document.getElementById('floatingContactBtn');
+    const contactPopover = document.getElementById('contactPopover');
+    const closePopover = document.getElementById('closePopover');
+    const contactWidget = document.getElementById('contactWidget');
+
+    if (floatingContactBtn && contactPopover) {
+        floatingContactBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            contactPopover.classList.toggle('active');
+        });
+
+        if (closePopover) {
+            closePopover.addEventListener('click', (e) => {
+                e.stopPropagation();
+                contactPopover.classList.remove('active');
+            });
+        }
+
+        document.addEventListener('click', (e) => {
+            if (contactWidget && !contactWidget.contains(e.target)) {
+                contactPopover.classList.remove('active');
+            }
+        });
+    }
 });
