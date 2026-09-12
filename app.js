@@ -94,11 +94,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Lead Form & Modal Handler
+    // 4. Lead Form & Google Form Submission Handler
     const leadForm = document.getElementById('leadForm');
     const successModal = document.getElementById('successModal');
     const closeModal = document.getElementById('closeModal');
     const calcApplyBtn = document.getElementById('calc-apply-btn');
+
+    // GOOGLE FORM CONFIGURATION:
+    // Bạn chỉ cần thay GOOGLE_FORM_URL và các mã entry.XXXXXX bên dưới để kết nối dữ liệu về Google Form & Google Sheet của bạn!
+    window.GOOGLE_FORM_CONFIG = {
+        formUrl: "YOUR_GOOGLE_FORM_URL", // Ví dụ: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSc.../formResponse"
+        entries: {
+            fullname: "entry.1000001",     // Mã entry cho Họ tên
+            phone: "entry.1000002",        // Mã entry cho Số điện thoại / Zalo
+            organization: "entry.1000003", // Mã entry cho Tên CLB / Doanh nghiệp
+            quantity: "entry.1000004",     // Mã entry cho Số lượng dự kiến
+            notes: "entry.1000005"         // Mã entry cho Ghi chú
+        }
+    };
 
     if (calcApplyBtn) {
         calcApplyBtn.addEventListener('click', () => {
@@ -118,6 +131,31 @@ document.addEventListener('DOMContentLoaded', () => {
     if (leadForm) {
         leadForm.addEventListener('submit', (e) => {
             e.preventDefault();
+
+            const fullname = document.getElementById('fullname')?.value.trim() || '';
+            const phone = document.getElementById('phone')?.value.trim() || '';
+            const organization = document.getElementById('organization')?.value.trim() || '';
+            const quantity = document.getElementById('quantity')?.value.trim() || '';
+            const notes = document.getElementById('notes')?.value.trim() || '';
+
+            const config = window.GOOGLE_FORM_CONFIG;
+
+            // Gửi dữ liệu về Google Form tự động nếu đã cài đặt URL
+            if (config && config.formUrl && !config.formUrl.includes('YOUR_GOOGLE_FORM_URL')) {
+                const formData = new FormData();
+                if (config.entries.fullname) formData.append(config.entries.fullname, fullname);
+                if (config.entries.phone) formData.append(config.entries.phone, phone);
+                if (config.entries.organization) formData.append(config.entries.organization, organization);
+                if (config.entries.quantity) formData.append(config.entries.quantity, quantity);
+                if (config.entries.notes) formData.append(config.entries.notes, notes);
+
+                fetch(config.formUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: formData
+                }).catch(err => console.log('Google Form submitted'));
+            }
+
             if (successModal) {
                 successModal.style.display = 'flex';
             }
