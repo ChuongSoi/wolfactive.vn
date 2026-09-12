@@ -311,19 +311,28 @@ document.addEventListener('DOMContentLoaded', () => {
     if (floatingContactBtn && contactPopover) {
         floatingContactBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            contactPopover.classList.toggle('active');
+            const isOpen = contactPopover.classList.contains('active') || contactPopover.style.display === 'flex';
+            if (isOpen) {
+                contactPopover.classList.remove('active');
+                contactPopover.style.display = 'none';
+            } else {
+                contactPopover.classList.add('active');
+                contactPopover.style.display = 'flex';
+            }
         });
 
         if (closePopover) {
             closePopover.addEventListener('click', (e) => {
                 e.stopPropagation();
                 contactPopover.classList.remove('active');
+                contactPopover.style.display = 'none';
             });
         }
 
         document.addEventListener('click', (e) => {
             if (contactWidget && !contactWidget.contains(e.target)) {
                 contactPopover.classList.remove('active');
+                contactPopover.style.display = 'none';
             }
         });
     }
