@@ -261,16 +261,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeMobileMenuBtn = document.getElementById('closeMobileMenuBtn');
     const navMenu = document.getElementById('navMenu');
     const mobileOverlay = document.getElementById('mobileOverlay');
+    const contactWidget = document.getElementById('contactWidget');
 
     function openMobileMenu() {
         if (navMenu) navMenu.classList.add('active');
         if (mobileOverlay) mobileOverlay.classList.add('active');
+        if (contactWidget) contactWidget.style.display = 'none';
         document.body.style.overflow = 'hidden';
     }
 
     function closeMobileMenu() {
         if (navMenu) navMenu.classList.remove('active');
         if (mobileOverlay) mobileOverlay.classList.remove('active');
+        if (contactWidget) contactWidget.style.display = '';
         document.body.style.overflow = '';
     }
 

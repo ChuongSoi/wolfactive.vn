@@ -8,11 +8,118 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,700;1,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=1.0.5">
+    <link rel="stylesheet" href="style.css?v=1.0.6">
+    <style>
+        /* CRITICAL MOBILE OVERLAY & DRAWER STACKING FIX */
+        .mobile-menu-overlay {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background: rgba(0, 0, 0, 0.75) !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            z-index: 99990 !important;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .mobile-menu-overlay.active {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .nav-menu {
+            position: fixed !important;
+            top: 0 !important;
+            right: -100% !important;
+            width: 290px !important;
+            max-width: 85vw !important;
+            height: 100vh !important;
+            background: #FFFFFF !important;
+            z-index: 99999 !important;
+            box-shadow: -6px 0 30px rgba(0, 0, 0, 0.35) !important;
+            display: flex !important;
+            flex-direction: column !important;
+            padding: 30px 24px 40px 24px !important;
+            gap: 16px !important;
+            transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            filter: none !important;
+        }
+        .nav-menu.active {
+            right: 0 !important;
+        }
+        .nav-menu a {
+            font-size: 15px !important;
+            font-weight: 800 !important;
+            color: #0F172A !important;
+            padding: 12px 0 !important;
+            border-bottom: 1px solid #F1F5F9 !important;
+            text-transform: uppercase;
+        }
+
+        /* DESKTOP FLOATING WIDGET */
+        .floating-contact-widget {
+            position: fixed !important;
+            bottom: 24px !important;
+            right: 24px !important;
+            z-index: 99900 !important;
+        }
+
+        .mobile-fixed-bar {
+            display: none;
+        }
+
+        /* MOBILE FLOATING WIDGET & BAR NO-OVERLAP FIX */
+        @media (max-width: 768px) {
+            .mobile-fixed-bar {
+                display: flex !important;
+                position: fixed !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                height: 60px !important;
+                background: #000000 !important;
+                z-index: 99800 !important;
+                padding: 8px 12px !important;
+                gap: 10px !important;
+                box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.25) !important;
+            }
+
+            .floating-contact-widget {
+                position: fixed !important;
+                bottom: 74px !important; /* Floats cleanly 74px above screen bottom, ZERO overlap! */
+                right: 12px !important;
+                z-index: 99850 !important;
+            }
+
+            .floating-contact-btn {
+                padding: 9px 14px !important;
+                font-size: 11.5px !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Mobile Menu Overlay Backdrop -->
     <div id="mobileOverlay" class="mobile-menu-overlay"></div>
+
+    <!-- Mobile Drawer Nav Menu (Direct Child of Body) -->
+    <nav class="nav-menu" id="navMenu">
+        <div class="mobile-drawer-header">
+            <span class="drawer-title">MENU WOLFACTIVE</span>
+            <button id="closeMobileMenuBtn" class="mobile-drawer-close" aria-label="Đóng menu">&times;</button>
+        </div>
+        <a href="#about-wxp">VỀ WOLFACTIVE</a>
+        <a href="#cxp-solutions">GIẢI PHÁP</a>
+        <a href="#partner-solutions">MÔ HÌNH ĐỐI TÁC</a>
+        <a href="#products">SẢN PHẨM</a>
+        <a href="#quote-calculator">BÁO GIÁ</a>
+        <a href="#reviews">ĐÁNH GIÁ</a>
+    </nav>
 
     <!-- Top Announcement Bar -->
     <div class="top-bar">
@@ -28,19 +135,6 @@
             <a href="https://wolfactive.vn/" target="_blank" class="navbar-brand" title="Wolf Active Sportswear & Nutrition">
                 <img src="assets/official-logo-transparent.png" alt="WOLFACTIVE - ALL THE FIT" class="brand-logo-img">
             </a>
-            
-            <nav class="nav-menu" id="navMenu">
-                <div class="mobile-drawer-header">
-                    <span class="drawer-title">MENU WOLFACTIVE</span>
-                    <button id="closeMobileMenuBtn" class="mobile-drawer-close" aria-label="Đóng menu">&times;</button>
-                </div>
-                <a href="#about-wxp">VỀ WOLFACTIVE</a>
-                <a href="#cxp-solutions">GIẢI PHÁP</a>
-                <a href="#partner-solutions">MÔ HÌNH ĐỐI TÁC</a>
-                <a href="#products">SẢN PHẨM</a>
-                <a href="#quote-calculator">BÁO GIÁ</a>
-                <a href="#reviews">ĐÁNH GIÁ</a>
-            </nav>
 
             <div class="nav-actions">
                 <a href="tel:0938173383" class="btn-phone desktop-only">
@@ -648,7 +742,7 @@
     </div>
 
     <!-- Floating Contact Widget (COOLMATE CXP Style) -->
-    <div id="contactWidget" class="floating-contact-widget" style="position: fixed; bottom: 24px; right: 24px; z-index: 99999;">
+    <div id="contactWidget" class="floating-contact-widget">
         <!-- Contact Options Popover Box -->
         <div id="contactPopover" class="contact-popover" style="display: none;">
             <div class="popover-header">
