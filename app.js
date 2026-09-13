@@ -316,16 +316,36 @@ document.addEventListener('DOMContentLoaded', () => {
     // 7. Mobile Touch Swipe Support for Hero Banner Slider
     if (heroCarousel && bannerTrack) {
         let touchStartX = 0;
-        let touchEndX = 0;
+        let touchStartY = 0;
+        let isSwiping = false;
 
         heroCarousel.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
+            if (e.touches && e.touches.length > 0) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                isSwiping = true;
+            }
         }, { passive: true });
 
+        heroCarousel.addEventListener('touchmove', (e) => {
+            if (!isSwiping || !e.touches || e.touches.length === 0) return;
+            const currentX = e.touches[0].clientX;
+            const currentY = e.touches[0].clientY;
+            const diffX = touchStartX - currentX;
+            const diffY = touchStartY - currentY;
+
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10) {
+                if (e.cancelable) e.preventDefault();
+            }
+        }, { passive: false });
+
         heroCarousel.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            const diffX = touchStartX - touchEndX;
-            if (Math.abs(diffX) > 40) {
+            if (!isSwiping) return;
+            isSwiping = false;
+            const endX = e.changedTouches && e.changedTouches.length > 0 ? e.changedTouches[0].clientX : 0;
+            const diffX = touchStartX - endX;
+
+            if (Math.abs(diffX) > 25) {
                 if (diffX > 0) {
                     if (typeof nextSlide === 'function') nextSlide();
                 } else {
