@@ -1323,20 +1323,22 @@ a {
     .nav-menu {
         position: fixed !important;
         top: 0 !important;
-        right: -100% !important;
-        width: 290px !important;
+        right: 0 !important;
+        width: 280px !important;
+        max-width: 80vw !important;
         height: 100vh !important;
         background: #FFFFFF !important;
         z-index: 99999 !important;
-        box-shadow: -6px 0 30px rgba(0, 0, 0, 0.3) !important;
+        box-shadow: -6px 0 35px rgba(0, 0, 0, 0.4) !important;
         display: flex !important;
         flex-direction: column !important;
-        padding: 30px 24px 40px 24px !important;
+        padding: 50px 24px 40px 24px !important;
         gap: 16px !important;
-        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        transform: translateX(100%) !important;
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
     .nav-menu.active {
-        right: 0 !important;
+        transform: translateX(0) !important;
     }
     .nav-menu a {
         font-size: 15px;

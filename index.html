@@ -8,11 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,700;1,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=1.0.8">
+    <link rel="stylesheet" href="style.css?v=1.0.9">
     <style>
         /* DESKTOP LAYOUT ONLY (>= 992px) */
         @media (min-width: 992px) {
-            .mobile-drawer-header,
             .mobile-menu-toggle,
             .mobile-menu-overlay,
             .mobile-fixed-bar {
@@ -30,6 +29,7 @@
                 background: transparent !important;
                 box-shadow: none !important;
                 padding: 0 !important;
+                transform: none !important;
                 right: auto !important;
             }
 
@@ -86,34 +86,26 @@
                 visibility: visible !important;
             }
 
-            .mobile-drawer-header {
-                display: flex !important;
-                justify-content: space-between;
-                align-items: center;
-                padding-bottom: 16px;
-                margin-bottom: 10px;
-                border-bottom: 2px solid #FF5A00;
-            }
-
             .nav-menu {
                 position: fixed !important;
                 top: 0 !important;
-                right: -100% !important;
-                width: 290px !important;
-                max-width: 85vw !important;
+                right: 0 !important;
+                width: 280px !important;
+                max-width: 80vw !important;
                 height: 100vh !important;
                 background: #FFFFFF !important;
                 z-index: 999999 !important;
                 box-shadow: -6px 0 35px rgba(0, 0, 0, 0.4) !important;
                 display: flex !important;
                 flex-direction: column !important;
-                padding: 24px 20px !important;
-                gap: 14px !important;
-                transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+                padding: 50px 24px 40px 24px !important;
+                gap: 16px !important;
+                transform: translateX(100%) !important;
+                transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
             }
 
             .nav-menu.active {
-                right: 0 !important;
+                transform: translateX(0) !important;
             }
 
             .nav-menu a {
@@ -122,6 +114,8 @@
                 color: #0F172A !important;
                 padding: 12px 0 !important;
                 border-bottom: 1px solid #F1F5F9 !important;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
             }
         }
 
@@ -197,10 +191,6 @@
 
             <!-- Nav Menu Items -->
             <nav class="nav-menu" id="navMenu">
-                <div class="mobile-drawer-header">
-                    <span class="drawer-title">MENU WOLFACTIVE</span>
-                    <button id="closeMobileMenuBtn" class="mobile-drawer-close" aria-label="Đóng menu">&times;</button>
-                </div>
                 <a href="#about-wxp">VỀ WOLFACTIVE</a>
                 <a href="#cxp-solutions">GIẢI PHÁP</a>
                 <a href="#partner-solutions">MÔ HÌNH ĐỐI TÁC</a>
@@ -875,6 +865,6 @@
         </button>
     </div>
 
-    <script src="app.js?v=1.0.7"></script>
+    <script src="app.js?v=1.0.9"></script>
 </body>
 </html>
