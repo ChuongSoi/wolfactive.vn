@@ -2,15 +2,18 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>WXP by WOLFACTIVE - Dịch Vụ Sản Xuất Đồng Phục Thể Thao & Quà Tặng Doanh Nghiệp</title>
     <meta name="description" content="WXP by WOLFACTIVE: Đồng phục thể thao cho CLB chạy bộ, giải chạy & doanh nghiệp. Thiết kế riêng, sản xuất theo yêu cầu, bảo hành 60 ngày.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,700;1,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=1.0.3">
+    <link rel="stylesheet" href="style.css?v=1.0.4">
 </head>
 <body>
+    <!-- Mobile Menu Overlay Backdrop -->
+    <div id="mobileOverlay" class="mobile-menu-overlay"></div>
+
     <!-- Top Announcement Bar -->
     <div class="top-bar">
         <div class="container top-bar-content">
@@ -27,6 +30,10 @@
             </a>
             
             <nav class="nav-menu" id="navMenu">
+                <div class="mobile-drawer-header">
+                    <span class="drawer-title">MENU WOLFACTIVE</span>
+                    <button id="closeMobileMenuBtn" class="mobile-drawer-close" aria-label="Đóng menu">&times;</button>
+                </div>
                 <a href="#about-wxp">VỀ WOLFACTIVE</a>
                 <a href="#cxp-solutions">GIẢI PHÁP</a>
                 <a href="#partner-solutions">MÔ HÌNH ĐỐI TÁC</a>
@@ -701,6 +708,6 @@
         </button>
     </div>
 
-    <script src="app.js?v=1.0.3"></script>
+    <script src="app.js?v=1.0.4"></script>
 </body>
 </html>
