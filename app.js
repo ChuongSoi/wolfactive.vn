@@ -267,6 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (navMenu) navMenu.classList.add('active');
         if (mobileOverlay) mobileOverlay.classList.add('active');
         if (contactWidget) contactWidget.style.display = 'none';
+        document.body.classList.add('menu-open');
         document.body.style.overflow = 'hidden';
     }
 
@@ -274,6 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (navMenu) navMenu.classList.remove('active');
         if (mobileOverlay) mobileOverlay.classList.remove('active');
         if (contactWidget) contactWidget.style.display = '';
+        document.body.classList.remove('menu-open');
         document.body.style.overflow = '';
     }
 

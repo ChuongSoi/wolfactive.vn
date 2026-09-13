@@ -8,60 +8,49 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,700;1,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=1.0.6">
+    <link rel="stylesheet" href="style.css?v=1.0.7">
     <style>
-        /* CRITICAL MOBILE OVERLAY & DRAWER STACKING FIX */
-        .mobile-menu-overlay {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            width: 100vw !important;
-            height: 100vh !important;
-            background: rgba(0, 0, 0, 0.75) !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
-            z-index: 99990 !important;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+        /* DESKTOP LAYOUT (>= 992px) */
+        .mobile-drawer-header {
+            display: none !important;
         }
-        .mobile-menu-overlay.active {
-            opacity: 1 !important;
-            visibility: visible !important;
+        .mobile-menu-toggle {
+            display: none !important;
+        }
+        .mobile-menu-overlay {
+            display: none !important;
+        }
+        .mobile-fixed-bar {
+            display: none !important;
         }
 
         .nav-menu {
-            position: fixed !important;
-            top: 0 !important;
-            right: -100% !important;
-            width: 290px !important;
-            max-width: 85vw !important;
-            height: 100vh !important;
-            background: #FFFFFF !important;
-            z-index: 99999 !important;
-            box-shadow: -6px 0 30px rgba(0, 0, 0, 0.35) !important;
+            position: static !important;
             display: flex !important;
-            flex-direction: column !important;
-            padding: 30px 24px 40px 24px !important;
-            gap: 16px !important;
-            transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 24px !important;
+            width: auto !important;
+            height: auto !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            right: auto !important;
             backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
             filter: none !important;
         }
-        .nav-menu.active {
-            right: 0 !important;
-        }
+
         .nav-menu a {
-            font-size: 15px !important;
-            font-weight: 800 !important;
+            font-size: 14px !important;
+            font-weight: 700 !important;
             color: #0F172A !important;
-            padding: 12px 0 !important;
-            border-bottom: 1px solid #F1F5F9 !important;
+            border-bottom: none !important;
+            padding: 0 !important;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
         }
 
-        /* DESKTOP FLOATING WIDGET */
         .floating-contact-widget {
             position: fixed !important;
             bottom: 24px !important;
@@ -69,11 +58,80 @@
             z-index: 99900 !important;
         }
 
-        .mobile-fixed-bar {
-            display: none;
+        /* MOBILE & TABLET RESPONSIVE (< 992px) */
+        @media (max-width: 992px) {
+            header.navbar {
+                position: sticky !important;
+                top: 0 !important;
+                z-index: 999999 !important; /* Ensures navbar child drawer sits above all overlays */
+                background: #FFFFFF !important;
+            }
+
+            .mobile-menu-toggle {
+                display: flex !important;
+            }
+
+            .mobile-menu-overlay {
+                display: block !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                background: rgba(0, 0, 0, 0.75) !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                z-index: 999900 !important;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s ease, visibility 0.3s ease;
+            }
+
+            .mobile-menu-overlay.active {
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+
+            .mobile-drawer-header {
+                display: flex !important;
+                justify-content: space-between;
+                align-items: center;
+                padding-bottom: 16px;
+                margin-bottom: 10px;
+                border-bottom: 2px solid #FF5A00;
+            }
+
+            .nav-menu {
+                position: fixed !important;
+                top: 0 !important;
+                right: -100% !important;
+                width: 290px !important;
+                max-width: 85vw !important;
+                height: 100vh !important;
+                background: #FFFFFF !important;
+                z-index: 999999 !important;
+                box-shadow: -6px 0 35px rgba(0, 0, 0, 0.4) !important;
+                display: flex !important;
+                flex-direction: column !important;
+                padding: 24px 20px !important;
+                gap: 14px !important;
+                transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            }
+
+            .nav-menu.active {
+                right: 0 !important;
+            }
+
+            .nav-menu a {
+                font-size: 15px !important;
+                font-weight: 800 !important;
+                color: #0F172A !important;
+                padding: 12px 0 !important;
+                border-bottom: 1px solid #F1F5F9 !important;
+            }
         }
 
-        /* MOBILE FLOATING WIDGET & BAR NO-OVERLAP FIX */
+        /* PHONE RESPONSIVE (< 768px) */
         @media (max-width: 768px) {
             .mobile-fixed-bar {
                 display: flex !important;
@@ -91,7 +149,7 @@
 
             .floating-contact-widget {
                 position: fixed !important;
-                bottom: 74px !important; /* Floats cleanly 74px above screen bottom, ZERO overlap! */
+                bottom: 74px !important; /* Floats cleanly 74px above screen bottom, ZERO overlap with bottom bar */
                 right: 12px !important;
                 z-index: 99850 !important;
             }
@@ -100,26 +158,17 @@
                 padding: 9px 14px !important;
                 font-size: 11.5px !important;
             }
+
+            body.menu-open .floating-contact-widget,
+            body.menu-open .mobile-fixed-bar {
+                display: none !important;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Mobile Menu Overlay Backdrop -->
     <div id="mobileOverlay" class="mobile-menu-overlay"></div>
-
-    <!-- Mobile Drawer Nav Menu (Direct Child of Body) -->
-    <nav class="nav-menu" id="navMenu">
-        <div class="mobile-drawer-header">
-            <span class="drawer-title">MENU WOLFACTIVE</span>
-            <button id="closeMobileMenuBtn" class="mobile-drawer-close" aria-label="Đóng menu">&times;</button>
-        </div>
-        <a href="#about-wxp">VỀ WOLFACTIVE</a>
-        <a href="#cxp-solutions">GIẢI PHÁP</a>
-        <a href="#partner-solutions">MÔ HÌNH ĐỐI TÁC</a>
-        <a href="#products">SẢN PHẨM</a>
-        <a href="#quote-calculator">BÁO GIÁ</a>
-        <a href="#reviews">ĐÁNH GIÁ</a>
-    </nav>
 
     <!-- Top Announcement Bar -->
     <div class="top-bar">
@@ -135,6 +184,20 @@
             <a href="https://wolfactive.vn/" target="_blank" class="navbar-brand" title="Wolf Active Sportswear & Nutrition">
                 <img src="assets/official-logo-transparent.png" alt="WOLFACTIVE - ALL THE FIT" class="brand-logo-img">
             </a>
+
+            <!-- Nav Menu Items -->
+            <nav class="nav-menu" id="navMenu">
+                <div class="mobile-drawer-header">
+                    <span class="drawer-title">MENU WOLFACTIVE</span>
+                    <button id="closeMobileMenuBtn" class="mobile-drawer-close" aria-label="Đóng menu">&times;</button>
+                </div>
+                <a href="#about-wxp">VỀ WOLFACTIVE</a>
+                <a href="#cxp-solutions">GIẢI PHÁP</a>
+                <a href="#partner-solutions">MÔ HÌNH ĐỐI TÁC</a>
+                <a href="#products">SẢN PHẨM</a>
+                <a href="#quote-calculator">BÁO GIÁ</a>
+                <a href="#reviews">ĐÁNH GIÁ</a>
+            </nav>
 
             <div class="nav-actions">
                 <a href="tel:0938173383" class="btn-phone desktop-only">
@@ -802,6 +865,6 @@
         </button>
     </div>
 
-    <script src="app.js?v=1.0.5"></script>
+    <script src="app.js?v=1.0.7"></script>
 </body>
 </html>
