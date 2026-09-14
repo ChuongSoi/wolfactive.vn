@@ -100,10 +100,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModal = document.getElementById('closeModal');
     const calcApplyBtn = document.getElementById('calc-apply-btn');
 
-    // GOOGLE FORM CONFIGURATION (Link Google Form: 1euK9sb1feICMuSSmYleyY6JkQKlbWnhevRkcAnhzA9U)
+    // GOOGLE FORM CONFIGURATION (Link Google Form: 1odhEUevxe6l1IRCVjtstJBn7bXE8bhDL_moHWsrbYJc)
     window.GOOGLE_FORM_CONFIG = {
-        formUrl: "https://docs.google.com/forms/d/1euK9sb1feICMuSSmYleyY6JkQKlbWnhevRkcAnhzA9U/formResponse",
-        formResponseUrl: "https://docs.google.com/forms/d/1euK9sb1feICMuSSmYleyY6JkQKlbWnhevRkcAnhzA9U/formResponse",
+        formUrl: "https://docs.google.com/forms/d/1odhEUevxe6l1IRCVjtstJBn7bXE8bhDL_moHWsrbYJc/formResponse",
+        formResponseUrl: "https://docs.google.com/forms/d/e/1FAIpQLScTO4PmahqC-KOEXvQBuxSX-5Mku0THVj5Y8AditkgoEQi_dQ/formResponse",
         entries: {
             fullname: "entry.101657411",          // 1. Anh/Chị tên gì?
             phone: "entry.1644733492",            // 2. Số điện thoại zalo của anh chị ?
@@ -141,22 +141,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const config = window.GOOGLE_FORM_CONFIG;
 
-            // Gửi dữ liệu về Google Form tự động
-            const targetUrl = config.formResponseUrl || config.formUrl;
-            if (targetUrl) {
-                const formData = new FormData();
-                if (config.entries.fullname) formData.append(config.entries.fullname, fullname);
-                if (config.entries.phone) formData.append(config.entries.phone, phone);
-                if (config.entries.organization_type) formData.append(config.entries.organization_type, organization_type);
-                if (config.entries.quantity) formData.append(config.entries.quantity, quantity);
-                if (config.entries.delivery_time) formData.append(config.entries.delivery_time, delivery_time);
+            // Gửi dữ liệu về Google Form tự động (hỗ trợ cả 2 endpoint)
+            const targetUrls = [
+                config.formUrl,
+                config.formResponseUrl
+            ].filter(Boolean);
 
-                fetch(targetUrl, {
+            const formData = new FormData();
+            if (config.entries.fullname) formData.append(config.entries.fullname, fullname);
+            if (config.entries.phone) formData.append(config.entries.phone, phone);
+            if (config.entries.organization_type) formData.append(config.entries.organization_type, organization_type);
+            if (config.entries.quantity) formData.append(config.entries.quantity, quantity);
+            if (config.entries.delivery_time) formData.append(config.entries.delivery_time, delivery_time);
+
+            targetUrls.forEach(url => {
+                fetch(url, {
                     method: 'POST',
                     mode: 'no-cors',
                     body: formData
                 }).catch(err => console.log('Google Form submitted', err));
-            }
+            });
 
             if (successModal) {
                 successModal.style.display = 'flex';
