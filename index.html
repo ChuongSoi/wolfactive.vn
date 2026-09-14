@@ -686,55 +686,66 @@
                 <form id="leadForm" class="cta-form">
                     <h3>FORM ĐĂNG KÍ ĐẶT ÁO WOLF ACTIVE</h3>
                     
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="fullname">Họ tên *</label>
-                            <input type="text" id="fullname" placeholder="Ví dụ: Nguyễn Văn A" required class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone">Số Điện Thoại *</label>
-                            <input type="tel" id="phone" placeholder="Ví dụ: 0938 173 383" required class="form-control">
-                        </div>
+                    <div class="form-group">
+                        <label for="fullname">1. Anh/Chị tên gì? *</label>
+                        <input type="text" id="fullname" name="fullname" placeholder="Nhập họ tên của bạn..." required class="form-control">
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="Ví dụ: email@example.com" class="form-control">
-                        </div>
+                    <div class="form-group">
+                        <label for="phone">2. Số điện thoại zalo của anh chị ? *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Nhập số điện thoại Zalo..." required class="form-control">
+                    </div>
 
-                        <div class="form-group">
-                            <label for="product_type">Loại áo mong muốn ?</label>
-                            <select id="product_type" class="form-control">
-                                <option value="áo thun">áo thun</option>
-                                <option value="áo ba lỗ">áo ba lỗ</option>
-                                <option value="quần short">quần short</option>
-                                <option value="khác">khác</option>
-                            </select>
+                    <div class="form-group">
+                        <label>3. Anh/Chị cần đồng phục cho: *</label>
+                        <div class="options-grid">
+                            <label class="option-chip">
+                                <input type="radio" name="organization_type" value="Doanh nghiệp" required>
+                                <span>Doanh nghiệp</span>
+                            </label>
+                            <label class="option-chip">
+                                <input type="radio" name="organization_type" value="CLB">
+                                <span>CLB</span>
+                            </label>
+                            <label class="option-chip">
+                                <input type="radio" name="organization_type" value="Giải chạy">
+                                <span>Giải chạy</span>
+                            </label>
+                            <label class="option-chip">
+                                <input type="radio" name="organization_type" value="Sự kiện khác">
+                                <span>Sự kiện khác</span>
+                            </label>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="organization">Tên câu lạc bộ chạy bộ của bạn ? Tên doanh nghiệp ? Tên giải chạy của bạn ?</label>
-                        <input type="text" id="organization" placeholder="Ví dụ: Techcombank Running Club / Doanh nghiệp..." class="form-control">
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="quantity">Số lượng áo dự kiến: Ví dụ: từ 50 áo</label>
-                            <input type="text" id="quantity" placeholder="Ví dụ: từ 50 áo" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="budget">Ngân sách dự kiến (nếu có)</label>
-                            <input type="text" id="budget" placeholder="Giúp chúng tôi đề xuất chất liệu và công nghệ phù hợp" class="form-control">
+                        <label for="quantity">4. Anh/Chị dự kiến cần khoảng bao nhiêu áo? *</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="quantity" name="quantity" min="1" placeholder="Ví dụ: 50" required class="form-control">
+                            <span class="unit-badge">áo</span>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="delivery_time">Thời gian mong muốn nhận hàng ?</label>
-                        <input type="text" id="delivery_time" placeholder="Ví dụ: Cần gấp trước ngày 25 tháng này..." class="form-control">
+                        <label>5. Anh/Chị cần áo vào thời gian nào? *</label>
+                        <div class="options-grid">
+                            <label class="option-chip">
+                                <input type="radio" name="delivery_time" value="Gấp" required>
+                                <span>Gấp</span>
+                            </label>
+                            <label class="option-chip">
+                                <input type="radio" name="delivery_time" value="1–2 tuần">
+                                <span>1–2 tuần</span>
+                            </label>
+                            <label class="option-chip">
+                                <input type="radio" name="delivery_time" value="3–4 tuần">
+                                <span>3–4 tuần</span>
+                            </label>
+                            <label class="option-chip">
+                                <input type="radio" name="delivery_time" value="Chưa xác định">
+                                <span>Chưa xác định</span>
+                            </label>
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-orange btn-block btn-lg">

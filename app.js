@@ -100,19 +100,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModal = document.getElementById('closeModal');
     const calcApplyBtn = document.getElementById('calc-apply-btn');
 
-    // GOOGLE FORM CONFIGURATION (Form Đăng Ký Đặt Áo Wolf Active)
+    // GOOGLE FORM CONFIGURATION (Link Google Form: 1euK9sb1feICMuSSmYleyY6JkQKlbWnhevRkcAnhzA9U)
     window.GOOGLE_FORM_CONFIG = {
-        formUrl: "https://docs.google.com/forms/d/e/1FAIpQLScTO4PmahqC-KOEXvQBuxSX-5Mku0THVj5Y8AditkgoEQi_dQ/formResponse",
-        formResponseUrl: "https://docs.google.com/forms/d/e/1FAIpQLScTO4PmahqC-KOEXvQBuxSX-5Mku0THVj5Y8AditkgoEQi_dQ/formResponse",
+        formUrl: "https://docs.google.com/forms/d/1euK9sb1feICMuSSmYleyY6JkQKlbWnhevRkcAnhzA9U/formResponse",
+        formResponseUrl: "https://docs.google.com/forms/d/1euK9sb1feICMuSSmYleyY6JkQKlbWnhevRkcAnhzA9U/formResponse",
         entries: {
-            fullname: "entry.101657411",      // Họ tên
-            phone: "entry.1644733492",        // Số Điện Thoại
-            email: "entry.1981056247",        // Email
-            organization: "entry.785617082",  // Tên câu lạc bộ / doanh nghiệp / giải chạy
-            product_type: "entry.1322256504", // Loại áo mong muốn
-            quantity: "entry.778891136",      // Số lượng áo dự kiến
-            budget: "entry.1591560592",       // Ngân sách dự kiến
-            delivery_time: "entry.1274761955" // Thời gian mong muốn nhận hàng
+            fullname: "entry.101657411",          // 1. Anh/Chị tên gì?
+            phone: "entry.1644733492",            // 2. Số điện thoại zalo của anh chị ?
+            organization_type: "entry.785617082",// 3. Anh/Chị cần đồng phục cho:
+            quantity: "entry.778891136",          // 4. Anh/Chị dự kiến cần khoảng bao nhiêu áo?
+            delivery_time: "entry.1274761955"     // 5. Anh/Chị cần áo vào thời gian nào?
         }
     };
 
@@ -121,11 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const contactSec = document.getElementById('contact-form');
             if (contactSec) {
                 contactSec.scrollIntoView({ behavior: 'smooth' });
-                const deliveryElem = document.getElementById('delivery_time');
-                if (deliveryElem) {
-                    const sportName = sportSelect.options[sportSelect.selectedIndex].text;
-                    const qty = qtyRange.value;
-                    deliveryElem.value = `[Tự động từ dự toán] Đơn hàng dự kiến: ${qty} sản phẩm môn ${sportName}`;
+                const qtyElem = document.getElementById('quantity');
+                if (qtyElem) {
+                    qtyElem.value = qtyRange.value;
                 }
             }
         });
@@ -137,12 +132,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const fullname = document.getElementById('fullname')?.value.trim() || '';
             const phone = document.getElementById('phone')?.value.trim() || '';
-            const email = document.getElementById('email')?.value.trim() || '';
-            const organization = document.getElementById('organization')?.value.trim() || '';
-            const product_type = document.getElementById('product_type')?.value.trim() || '';
-            const quantity = document.getElementById('quantity')?.value.trim() || '';
-            const budget = document.getElementById('budget')?.value.trim() || '';
-            const delivery_time = document.getElementById('delivery_time')?.value.trim() || '';
+            const orgElem = document.querySelector('input[name="organization_type"]:checked');
+            const organization_type = orgElem ? orgElem.value : '';
+            const quantityVal = document.getElementById('quantity')?.value.trim() || '';
+            const quantity = quantityVal ? `${quantityVal} áo` : '';
+            const timeElem = document.querySelector('input[name="delivery_time"]:checked');
+            const delivery_time = timeElem ? timeElem.value : '';
 
             const config = window.GOOGLE_FORM_CONFIG;
 
@@ -152,18 +147,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const formData = new FormData();
                 if (config.entries.fullname) formData.append(config.entries.fullname, fullname);
                 if (config.entries.phone) formData.append(config.entries.phone, phone);
-                if (config.entries.email) formData.append(config.entries.email, email);
-                if (config.entries.organization) formData.append(config.entries.organization, organization);
-                if (config.entries.product_type) formData.append(config.entries.product_type, product_type);
+                if (config.entries.organization_type) formData.append(config.entries.organization_type, organization_type);
                 if (config.entries.quantity) formData.append(config.entries.quantity, quantity);
-                if (config.entries.budget) formData.append(config.entries.budget, budget);
                 if (config.entries.delivery_time) formData.append(config.entries.delivery_time, delivery_time);
 
                 fetch(targetUrl, {
                     method: 'POST',
                     mode: 'no-cors',
                     body: formData
-                }).catch(err => console.log('Google Form submitted'));
+                }).catch(err => console.log('Google Form submitted', err));
             }
 
             if (successModal) {

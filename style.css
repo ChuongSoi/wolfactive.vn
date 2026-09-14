@@ -1105,6 +1105,79 @@ a {
     margin-top: 14px;
 }
 
+/* Custom Option Chips & Input Units for Lead Form */
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.option-chip {
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-heading);
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.option-chip:hover {
+    border-color: #FF5A00;
+    background: #FFFBF9;
+}
+
+.option-chip input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #CBD5E1;
+    border-radius: 50%;
+    margin-right: 8px;
+    outline: none;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.option-chip input[type="radio"]:checked {
+    border-color: #FF5A00;
+    background: #FF5A00;
+    box-shadow: inset 0 0 0 3px #FFFFFF;
+}
+
+.option-chip:has(input[type="radio"]:checked) {
+    border-color: #FF5A00;
+    background: rgba(255, 90, 0, 0.08);
+    color: #FF5A00;
+    font-weight: 700;
+}
+
+.input-with-unit {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-unit input {
+    padding-right: 50px !important;
+}
+
+.input-with-unit .unit-badge {
+    position: absolute;
+    right: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
 /* Footer */
 .footer {
     background: #000000;
