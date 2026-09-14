@@ -128,44 +128,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (leadForm) {
         leadForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
+            // Không e.preventDefault() hoàn toàn để form HTML tự POST vào iframe ẩn
+            
             const fullname = document.getElementById('fullname')?.value.trim() || '';
             const phone = document.getElementById('phone')?.value.trim() || '';
-            const orgElem = document.querySelector('input[name="organization_type"]:checked');
+            const orgElem = document.querySelector('input[name="entry.785617082"]:checked');
             const organization_type = orgElem ? orgElem.value : '';
             const quantityVal = document.getElementById('quantity')?.value.trim() || '';
-            const quantity = quantityVal ? `${quantityVal} áo` : '';
-            const timeElem = document.querySelector('input[name="delivery_time"]:checked');
+            const quantity = quantityVal ? (quantityVal.includes('áo') ? quantityVal : `${quantityVal} áo`) : '';
+            const timeElem = document.querySelector('input[name="entry.1274761955"]:checked');
             const delivery_time = timeElem ? timeElem.value : '';
 
-            const config = window.GOOGLE_FORM_CONFIG;
+            // Backup Fetch submit using application/x-www-form-urlencoded
+            const params = new URLSearchParams();
+            params.append('entry.101657411', fullname);
+            params.append('entry.1644733492', phone);
+            params.append('entry.785617082', organization_type);
+            params.append('entry.778891136', quantity);
+            params.append('entry.1274761955', delivery_time);
 
-            // Gửi dữ liệu về Google Form tự động (hỗ trợ cả 2 endpoint)
-            const targetUrls = [
-                config.formUrl,
-                config.formResponseUrl
-            ].filter(Boolean);
+            const urls = [
+                "https://docs.google.com/forms/d/e/1FAIpQLScTO4PmahqC-KOEXvQBuxSX-5Mku0THVj5Y8AditkgoEQi_dQ/formResponse",
+                "https://docs.google.com/forms/d/1odhEUevxe6l1IRCVjtstJBn7bXE8bhDL_moHWsrbYJc/formResponse"
+            ];
 
-            const formData = new FormData();
-            if (config.entries.fullname) formData.append(config.entries.fullname, fullname);
-            if (config.entries.phone) formData.append(config.entries.phone, phone);
-            if (config.entries.organization_type) formData.append(config.entries.organization_type, organization_type);
-            if (config.entries.quantity) formData.append(config.entries.quantity, quantity);
-            if (config.entries.delivery_time) formData.append(config.entries.delivery_time, delivery_time);
-
-            targetUrls.forEach(url => {
-                fetch(url, {
+            urls.forEach(targetUrl => {
+                fetch(targetUrl, {
                     method: 'POST',
                     mode: 'no-cors',
-                    body: formData
-                }).catch(err => console.log('Google Form submitted', err));
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: params
+                }).catch(err => console.log('Google Form backup submitted'));
             });
 
             if (successModal) {
                 successModal.style.display = 'flex';
             }
-            leadForm.reset();
+
+            setTimeout(() => {
+                leadForm.reset();
+            }, 600);
         });
     }
 
